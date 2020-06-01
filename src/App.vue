@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <TodoForm @adicionar="novaTarefa($event)"/>
+    <TodoList :tarefas="tarefas"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TodoForm from "./components/TodoForm.vue"
+import TodoList from "./components/TodoList.vue"
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    TodoForm,
+    TodoList
+  }, data: function() {
+    return {
+      tarefas: []
+    }
+  },
+  methods: {
+    novaTarefa: function(event) {
+      this.tarefas.push({nometarefa: event.texto});
+    }
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin: 2px solid black;
+  width: 1500px;
+  height: 150px;
 }
 </style>
